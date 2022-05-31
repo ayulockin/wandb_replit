@@ -11,17 +11,20 @@ class SimpleMLPModel(torch.nn.Module):
         hidden_size (int): Number of neurons in the hidden layer.
     """
     def __init__(self,
-                 hidden_size=10):
+                 hidden_size=10,
+                 dropout_rate=0.2):
         super(SimpleMLPModel, self).__init__()
         self.fc1 = torch.nn.Linear(2, hidden_size)
         self.relu = torch.nn.ReLU()
+        self.dropout = torch.nn.Dropout(dropout_rate)
         self.fc2 = torch.nn.Linear(hidden_size, 1)
         self.sigmoid = torch.nn.Sigmoid()
 
     def forward(self, x):
         hidden = self.fc1(x)
         relu = self.relu(hidden)
-        output = self.fc2(relu)
+        dropout = self.dropout(relu)
+        output = self.fc2(dropout)
         output = self.sigmoid(output)
         return output
 

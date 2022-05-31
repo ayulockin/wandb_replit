@@ -7,7 +7,6 @@ def train(dataloader, model, loss_fn, optimizer, progress):
     size = len(dataloader.dataset)
     num_batches = len(dataloader)
     batch_size = size//num_batches
-    print(batch_size)
 
     model.train()
     train_loss, train_acc = 0, 0
@@ -53,7 +52,6 @@ def test(dataloader, model, loss_fn, progress):
     size = len(dataloader.dataset)
     num_batches = len(dataloader)
     batch_size = size//num_batches
-    print(batch_size)
 
     model.eval()
     test_loss, test_acc = 0, 0
